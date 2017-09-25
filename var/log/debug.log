@@ -1,0 +1,1 @@
+[2017-09-20 19:09:50] main.DEBUG: cache_invalidate:  {"method":"GET","url":"http://demo-omnichannel.magestore.com/","invalidateInfo":{"tags":["interception","CONFIG"],"mode":"matchingTag"},"is_exception":false} []
