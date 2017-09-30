@@ -25,5 +25,10 @@
         </referenceContainer>
         <referenceBlock name="report.bugs" remove="true"/>
         <move element="copyright" destination="before.body.end"/>
+        <referenceContainer name="main">
+            <container name="tutorials-panel" as="tutorials-panel" before="-" >
+                <block class="Magento\Framework\View\Element\Template" name="tutorials-panel-default" as="tutorials-panel-default" before="-" template="Magento_Theme::html/tutorials-panel.phtml" />
+            </container>
+        </referenceContainer>
     </body>
 </page>

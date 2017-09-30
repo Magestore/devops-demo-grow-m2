@@ -43,7 +43,7 @@
                         <!-- ko if: total -->
                             <div data-bind="foreach: items" class="row">
                                 <div class="col-sm-3">
-                                        <div class="item product-item">
+                                        <div class="item product-item" data-bind="attr: {id: 'product' + $index() }">
                                             <div class="product-img" data-bind="click:$parent.prepareAddToCart.bind($parent)">
                                                 <a class="warning" data-bind="visible: isShowOutStock, attr:{'title': $t('Out of stock')}"><span class="icon-iconPOS-out-of-stock"></span></a>
                                                 <img width="119" height="auto" data-bind="attr: {src: image}" />
