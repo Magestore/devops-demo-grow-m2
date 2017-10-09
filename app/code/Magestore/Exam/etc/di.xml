@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Magestore
+ * @package     Magestore_Affiliateplusplus
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--1.1 maping type UiComponent DataProvider CollectionFactory for Sale staff grid-->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="exam_grid_listing_data_source" xsi:type="string">Magestore\Exam\Model\ResourceModel\Exam\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <!--1.2 Define source data for Sale staff grid-->
+    <type name="Magestore\Exam\Model\ResourceModel\Exam\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magestore_salestaff</argument>
+            <argument name="eventPrefix" xsi:type="string">exam_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">exam_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Magestore\Exam\Model\ResourceModel\Exam</argument>
+        </arguments>
+    </type>
+
+    <!--1.3 Filter function defined for Sale staff grid-->
+    <virtualType name="ExamGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!--1.4 Define Grid data provider for Sale staff grid-->
+    <virtualType name="ExamGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Magestore\Exam\Model\ResourceModel\Exam\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">ExamGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+</config>

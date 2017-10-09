@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+  <menu>
+    <add id="Magestore_Exam::magestoreexam" title="EXAM" resource="Magestore_Exam::magestoreexam" module="Magestore_Exam" sortOrder="20"/>
+    <add id="Magestore_Exam::manageexam" title="Manage Exam" resource="Magestore_Exam::manageexam" parent="Magestore_Exam::magestoreexam" action="examadmin/exam" module="Magestore_Exam" sortOrder="20"/>
+  </menu>
+</config>
