@@ -76,6 +76,10 @@ define([
                     intro: "Welcome to the Front-end demo of WebPOS for browser interface! This Open session popup will be automatically enabled before working."
                 },
                 {
+                    element: document.querySelectorAll('#popup-open-shift .modal-body .btn-done')[0],
+                    intro: "Open session here"
+                },
+                {
                     element: document.querySelectorAll('#shift_container .sum-info-top')[0],
                     intro: "This is the page for Cash in - cash out actions and also shows Payment Slip."
                 }
@@ -103,7 +107,10 @@ define([
                 }, 100);
             }
             if (intro_welcome._currentStep == 1) {
-                $('#popup-open-shift .cancel').click();
+
+            }
+            if (intro_welcome._currentStep == 2) {
+                $('#popup-open-shift .modal-body .btn-done').click();
                 setTimeout(function(){  intro1.refresh();
                     jQuery('.introjs-helperLayer').css('z-index','99999998');
                     $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
@@ -288,7 +295,7 @@ define([
                     intro: "Click to Order Processing to proceed a refund from customer's order. "
                 },
                 {
-                    element: document.querySelectorAll('#webpos_order_view_container .more-info a')[0],
+                    element: document.querySelectorAll('#orders_history_container .wrap-order .more-info')[0],
                     intro: "Click to refund to start."
                 },
                 {
@@ -310,14 +317,18 @@ define([
             if (intro1._currentStep == 0) {
                 $('#c-mask').click();
                 setTimeout(function(){  intro1.refresh();
-                    jQuery('.introjs-helperLayer').css('z-index','99999998');
+                    jQuery('.introjs-helperLayer').css('pointer-events','none');
+                    jQuery('.introjs-overlay').css('pointer-events','none');
                     $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
+
                 }, 100);
             }
             if (intro1._currentStep == 1) {
                 $('#c-button--push-left').click();
+
+                $('.wrap-status-orders .processing a').click();
                 $('#orders_history').click();
-                setTimeout(function(){  intro1.refresh();
+                    setTimeout(function(){  intro1.refresh();
                     jQuery('.introjs-helperLayer').css('pointer-events','none');
                     jQuery('.introjs-overlay').css('pointer-events','none');
                     $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
@@ -325,8 +336,7 @@ define([
                 }, 100);
             }
             if (intro1._currentStep == 2) {
-                $('.wrap-status-orders .processing a').click();
-                //$('#c-mask').click();
+                $('#orders_history_container .wrap-order .more-info a').click();
                 setTimeout(function(){  intro1.refresh();
                     jQuery('.introjs-helperLayer').css('pointer-events','none');
                     jQuery('.introjs-overlay').css('pointer-events','none');
@@ -338,15 +348,9 @@ define([
 
         });
 
-        intro1.onchange(function (targetElement) {
+        intro1.onaffterchange(function (targetElement) {
             if (intro1._currentStep == 1) {
-                $('#orders_history').click();
-                setTimeout(function(){  intro1.refresh();
-                    jQuery('.introjs-helperLayer').css('pointer-events','none');
-                    jQuery('.introjs-overlay').css('pointer-events','none');
-                    $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
-
-                }, 100);
+                setTimeout(function(){intro1.goToStep(2).start()},3000);
             }
         });
 
